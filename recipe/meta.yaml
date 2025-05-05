@@ -1,5 +1,5 @@
 {% set name = "aws-crt-cpp" %}
-{% set version = "0.18.16" %}
+{% set version = "0.31.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 9e69bc1dc4b50871d1038aa9ff6ddeb4c9b28f7d6b5e5b1b69041ccf50a13483
-  patches:                                 # [linux64 or (linux and aarch64)]
-    - patches/0001-skip-failing-tests-on-CI.patch  # [linux64 or (linux and aarch64)]
+  sha256: 4e920a5da67f77a4e2cbceb0f8d3a279f57888cde0abeae19b58bc8374d1cb3d
+  patches:
+    - patches/0001-Skip-failing-tests-in-CI.patch  # [linux]
+    - patches/0002-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
 build:
   number: 0
@@ -24,17 +25,19 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja-base
-    - patch  # [linux64 or (linux and aarch64)]
+    - patch     # [unix]
+    - m2-patch  # [win]
   host:
-    - aws-c-sdkutils 0.1.6
-    - aws-c-common 0.8.5
-    - aws-c-cal 0.5.20
-    - aws-c-io 0.13.10
-    - aws-c-event-stream 0.2.15
-    - aws-c-http 0.6.25
-    - aws-c-auth 0.6.19
-    - aws-c-mqtt 0.7.13
-    - aws-c-s3 0.1.51
+    - aws-c-auth 0.8.5
+    - aws-c-cal 0.8.5
+    - aws-checksums 0.2.3
+    - aws-c-common 0.11.1
+    - aws-c-event-stream 0.5.4
+    - aws-c-http 0.9.3
+    - aws-c-io 0.17.0
+    - aws-c-mqtt 0.12.2
+    - aws-c-s3 0.7.11
+    - aws-c-sdkutils 0.2.3
 test:
   commands:
     - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]
