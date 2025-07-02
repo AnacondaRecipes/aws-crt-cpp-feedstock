@@ -9,8 +9,7 @@ source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 4e920a5da67f77a4e2cbceb0f8d3a279f57888cde0abeae19b58bc8374d1cb3d
   patches:
-    - patches/0001-Skip-failing-tests-in-CI.patch  # [linux]
-    - patches/0002-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
+    - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
 build:
   number: 1
