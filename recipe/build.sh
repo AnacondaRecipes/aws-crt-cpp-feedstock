@@ -11,9 +11,11 @@ cmake ${CMAKE_ARGS} -GNinja \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_SHARED_LIBS=ON \
   -DBUILD_DEPS=OFF \
+  -DBUILD_TESTING=ON \
+  -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
   ..
-ninja install
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" != "1" ]]; then
-    ctest -E '(HttpDownloadNoBackPressureHTTP2)|(HttpDownloadNoBackPressureHTTP1_1)'
-fi
+
+cmake --build . --config Release --target install
+
+ctest --output-on-failure -j${CPU_COUNT}
 popd

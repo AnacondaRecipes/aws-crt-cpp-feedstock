@@ -1,5 +1,5 @@
 {% set name = "aws-crt-cpp" %}
-{% set version = "0.31.0" %}
+{% set version = "0.32.10" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,14 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 4e920a5da67f77a4e2cbceb0f8d3a279f57888cde0abeae19b58bc8374d1cb3d
+  sha256: 3ae101aa7a0a62d9868575b0e07a64536da1566283a5a314a4eee0326d808295
   patches:
-    - patches/0001-Skip-failing-tests-in-CI.patch  # [linux]
-    - patches/0002-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
+    - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
 build:
   number: 0
   run_exports:
     - {{ pin_subpackage("aws-crt-cpp", max_pin="x.x.x") }}
-  missing_dso_whitelist:
-    - $RPATH/ld64.so.1  # [s390x]
 
 requirements:
   build:
@@ -25,24 +22,24 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja-base
-    - patch     # [unix]
+    - patch  # [unix]
     - m2-patch  # [win]
   host:
-    - aws-c-auth 0.8.5
-    - aws-c-cal 0.8.5
-    - aws-checksums 0.2.3
-    - aws-c-common 0.11.1
-    - aws-c-event-stream 0.5.4
-    - aws-c-http 0.9.3
-    - aws-c-io 0.17.0
-    - aws-c-mqtt 0.12.2
-    - aws-c-s3 0.7.11
-    - aws-c-sdkutils 0.2.3
+    - aws-c-auth 0.9.0
+    - aws-c-cal 0.9.2
+    - aws-checksums 0.2.7
+    - aws-c-common 0.12.3
+    - aws-c-event-stream 0.5.5
+    - aws-c-http 0.10.2
+    - aws-c-io 0.20.1
+    - aws-c-mqtt 0.13.2
+    - aws-c-s3 0.8.3
+    - aws-c-sdkutils 0.2.4
 test:
   commands:
     - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]
     - test -f $PREFIX/include/aws/io/io.h  # [unix]
-    - if not exist %LIBRARY_INC%\\aws\\io\\io.h exit 1          # [win]
+    - if not exist %LIBRARY_INC%\\aws\\io\\io.h exit 1  # [win]
     - if not exist %PREFIX%\\Library\\bin\\aws-c-io.dll exit 1  # [win]
 about:
   home: https://github.com/awslabs/aws-crt-cpp
@@ -52,7 +49,7 @@ about:
   summary: C++ wrapper around the aws-c-* libraries.
   description: |
     C++ wrapper around the aws-c-* libraries. Provides Cross-Platform Transport Protocols and SSL/TLS implementations for C++.
-  doc_url: https://awslabs.github.io/aws-crt-cpp/
+  doc_url: https://awslabs.github.io/aws-crt-cpp
   dev_url: https://github.com/awslabs/aws-crt-cpp
 extra:
   recipe-maintainers:
