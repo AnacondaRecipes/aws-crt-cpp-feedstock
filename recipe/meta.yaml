@@ -1,5 +1,5 @@
 {% set name = "aws-crt-cpp" %}
-{% set version = "0.32.10" %}
+{% set version = "0.34.00" %}
 
 package:
   name: {{ name|lower }}
@@ -22,25 +22,23 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja-base
-    - patch  # [unix]
-    - m2-patch  # [win]
   host:
     - aws-c-auth 0.9.0
     - aws-c-cal 0.9.2
     - aws-checksums 0.2.7
-    - aws-c-common 0.12.3
-    - aws-c-event-stream 0.5.5
-    - aws-c-http 0.10.2
-    - aws-c-io 0.20.1
-    - aws-c-mqtt 0.13.2
-    - aws-c-s3 0.8.3
+    - aws-c-common 0.12.4
+    - aws-c-event-stream 0.5.6
+    - aws-c-http 0.10.4
+    - aws-c-io 0.21.4
+    - aws-c-mqtt 0.13.3
+    - aws-c-s3 0.8.7
     - aws-c-sdkutils 0.2.4
 test:
   commands:
     - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]
     - test -f $PREFIX/include/aws/io/io.h  # [unix]
-    - if not exist %LIBRARY_INC%\\aws\\io\\io.h exit 1  # [win]
-    - if not exist %PREFIX%\\Library\\bin\\aws-c-io.dll exit 1  # [win]
+    - if not exist %LIBRARY_INC%\aws\io\io.h exit 1  # [win]
+    - if not exist %LIBRARY_BIN%\aws-c-io.dll exit 1  # [win]
 about:
   home: https://github.com/awslabs/aws-crt-cpp
   license: Apache-2.0
