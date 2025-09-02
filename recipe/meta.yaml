@@ -1,5 +1,5 @@
 {% set name = "aws-crt-cpp" %}
-{% set version = "0.34.00" %}
+{% set version = "0.34.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 3ae101aa7a0a62d9868575b0e07a64536da1566283a5a314a4eee0326d808295
+  sha256: 159998cff5a52406eb486bf92989d2184dbf6d47d5ec2593b864625defac279b
   patches:
     - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
@@ -18,9 +18,10 @@ build:
 
 requirements:
   build:
-    - cmake
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - cmake
     - ninja-base
   host:
     - aws-c-auth 0.9.0
