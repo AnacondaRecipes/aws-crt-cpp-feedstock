@@ -1,5 +1,5 @@
 {% set name = "aws-crt-cpp" %}
-{% set version = "0.35.4" %}
+{% set version = "0.37.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/awslabs/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 3deb29f816498259aa289930afdb5f37d95bba991ec224952f57f931d877e81d
+  sha256: 2bada1b314dcf6f4acbc1db648088bd4933445b02c13d8580ae1ed4f85d6ab84
   patches:
     - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
@@ -26,13 +26,13 @@ requirements:
   host:
     - aws-c-auth 0.9.4
     - aws-c-cal 0.9.13
-    - aws-checksums 0.2.8
+    - aws-checksums 0.2.10
     - aws-c-common 0.12.6
-    - aws-c-event-stream 0.5.9
+    - aws-c-event-stream 0.6.0
     - aws-c-http 0.10.7
     - aws-c-io 0.23.3
     - aws-c-mqtt 0.13.3
-    - aws-c-s3 0.11.3
+    - aws-c-s3 0.12.0
     - aws-c-sdkutils 0.2.4
 test:
   commands:
