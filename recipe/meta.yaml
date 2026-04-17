@@ -12,7 +12,7 @@ source:
     - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage("aws-crt-cpp", max_pin="x.x.x") }}
 
@@ -24,14 +24,14 @@ requirements:
     - cmake
     - ninja-base
   host:
-    - aws-c-auth 0.9.4
+    - aws-c-auth 0.10.1
     - aws-c-cal 0.9.13
     - aws-checksums 0.2.10
     - aws-c-common 0.12.6
-    - aws-c-event-stream 0.6.0
-    - aws-c-http 0.10.7
-    - aws-c-io 0.23.3
-    - aws-c-mqtt 0.13.3
+    - aws-c-event-stream 0.6.1
+    - aws-c-http 0.10.13
+    - aws-c-io 0.26.3
+    - aws-c-mqtt 0.15.2
     - aws-c-s3 0.12.0
     - aws-c-sdkutils 0.2.4
 test:
