@@ -12,7 +12,7 @@ source:
     - patches/0001-use-C-style-for-including-inttypes-in-bin-mqtt5_cana.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage("aws-crt-cpp", max_pin="x.x.x") }}
 
@@ -25,16 +25,16 @@ requirements:
     - ninja-base
     - zlib
   host:
-    - aws-c-auth 0.10.4
-    - aws-c-cal 0.9.15
-    - aws-checksums 0.2.10
-    - aws-c-common 0.14.5
-    - aws-c-event-stream 0.7.1
-    - aws-c-http 0.11.0
-    - aws-c-io 0.27.6
-    - aws-c-mqtt 0.16.1
-    - aws-c-s3 0.13.5
-    - aws-c-sdkutils 0.2.9
+    - aws-c-auth {{ aws_c_auth }}
+    - aws-c-cal {{ aws_c_cal }}
+    - aws-checksums {{ aws_checksums }}
+    - aws-c-common {{ aws_c_common }}
+    - aws-c-event-stream {{ aws_c_event_stream}}
+    - aws-c-http {{ aws_c_http }}
+    - aws-c-io {{ aws_c_io }}
+    - aws-c-mqtt {{ aws_c_mqtt }}
+    - aws-c-s3 {{ aws_c_s3 }}
+    - aws-c-sdkutils {{ aws_c_sdkutils }}
 test:
   commands:
     - test -f $PREFIX/lib/libaws-c-io${SHLIB_EXT}  # [unix]
